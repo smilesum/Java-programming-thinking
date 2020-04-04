@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Java-programming-thinking.iml" filepath="$PROJECT_DIR$/Java-programming-thinking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Java_spring_designmodel.iml" filepath="$PROJECT_DIR$/Java_spring_designmodel.iml" />
     </modules>
   </component>
 </project>
