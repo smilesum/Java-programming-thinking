@@ -1,4 +1,4 @@
-package com.company.generics_15;
+package com.company.Java.generics_15;
 
 public class TwoTupple<A, B> {
   public final A a;
