@@ -4,6 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../..">
       <sourceFolder url="file://$MODULE_DIR$/../../.." isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../src/test/java" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/../.." />
       <excludeFolder url="file://$MODULE_DIR$/../../../bazel-Java_spring_designmodel" />
       <excludeFolder url="file://$MODULE_DIR$/../../../bazel-bin" />
@@ -13,7 +14,27 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="junit-jupiter-api-5.5.2_31abefa0" level="project" />
+    <orderEntry type="library" name="apiguardian-api-1.1.0_3b2556f2" level="project" />
+    <orderEntry type="library" name="spring-beans-5.2.4.RELEASE_c8605b93" level="project" />
+    <orderEntry type="library" name="spring-boot-autoconfigure-2.2.4.RELEASE_a12809ac" level="project" />
+    <orderEntry type="library" name="spring-boot-starter-web-2.2.4.RELEASE_bfb3362b" level="project" />
+    <orderEntry type="library" name="spring-security-config-5.2.1.RELEASE_b24af27d" level="project" />
+    <orderEntry type="library" name="spring-data-commons-2.2.5.RELEASE_454c516e" level="project" />
+    <orderEntry type="library" name="spring-boot-2.2.4.RELEASE_19489122" level="project" />
+    <orderEntry type="library" name="spring-tx-5.2.4.RELEASE_1ad029a6" level="project" />
+    <orderEntry type="library" name="spring-boot-test-2.2.4.RELEASE_2a8c3c29" level="project" />
+    <orderEntry type="library" name="spring-data-jpa-2.2.4.RELEASE_ee9b2ca0" level="project" />
+    <orderEntry type="library" name="spring-boot-starter-data-jpa-2.2.4.RELEASE_35e5b5cd" level="project" />
+    <orderEntry type="library" name="spring-security-web-5.2.1.RELEASE_4c736e85" level="project" />
     <orderEntry type="library" name="junit-4.12_7692c8fb" level="project" />
+    <orderEntry type="library" name="spring-context-5.2.4.RELEASE_6a5a13bf" level="project" />
+    <orderEntry type="library" name="spring-web-5.2.3.RELEASE_fd5a8123" level="project" />
     <orderEntry type="library" name="guava-28.0-jre_81326264" level="project" />
+    <orderEntry type="library" name="spring-core-5.2.4.RELEASE_b26bf541" level="project" />
+    <orderEntry type="library" name="spring-expression-5.2.4.RELEASE_3bbd31ba" level="project" />
+    <orderEntry type="library" name="spring-boot-test-autoconfigure-2.2.4.RELEASE_c6245c73" level="project" />
+    <orderEntry type="library" name="spring-webmvc-5.2.3.RELEASE_40660827" level="project" />
+    <orderEntry type="library" name="spring-boot-starter-security-2.2.4.RELEASE_973163d5" level="project" />
   </component>
 </module>
