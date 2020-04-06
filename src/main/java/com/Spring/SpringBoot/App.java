@@ -1,6 +1,12 @@
 package main.java.com.Spring.SpringBoot;
 
 import com.google.common.primitives.Ints;
+//import org.springframework.boot.CommandLineRunner;
+//import org.springframework.boot.SpringApplication;
+//import org.springframework.boot.autoconfigure.SpringBootApplication;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.boot.SpringApplication;
 
 /**
  * This application compares two numbers, using the Ints.compare
@@ -19,12 +25,7 @@ public class App {
 
 }
 
-//import org.springframework.boot.CommandLineRunner;
-//import org.springframework.boot.SpringApplication;
-//import org.springframework.boot.autoconfigure.SpringBootApplication;
-//import org.springframework.context.ApplicationContext;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.boot.SpringApplication;
+
 
 //@SpringBootApplication
 //public class App {

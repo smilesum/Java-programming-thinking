@@ -22,5 +22,6 @@ java_test(
         ":java-maven-lib",
         "@maven//:com_google_guava_guava",
         "@maven//:junit_junit",
+        "@maven//:org_springframework_spring_web",
     ],
 )

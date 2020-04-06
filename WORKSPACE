@@ -17,6 +17,7 @@ maven_install(
     artifacts = [
         "junit:junit:4.12",
         "com.google.guava:guava:28.0-jre",
+        "org.springframework:spring-web:5.2.0.RELEASE"
     ],
     fetch_sources = True,
     repositories = [
