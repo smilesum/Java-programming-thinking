@@ -1,0 +1,413 @@
+# TEAM: backend_infra
+# Java Spring Boot WORKSPACE
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+# Versions ---------------------------------------------------------------------
+
+AWSSDK_VERSION = "2.7.8"
+
+GRAPHQL_JAVA_VERSION = "6.0.1"
+
+GRPC_VERSION = "1.27.0"
+
+JACKSON_VERSION = "2.10.2"
+
+JOOQ_VERSION = "3.12.4"
+
+REACTOR_CORE_VERSION = "3.3.2.RELEASE"
+
+RULES_JVM_EXTERNAL_VERSION = "3.0"
+
+SLF4J_VERSION = "1.7.30"
+
+SPRING_VERSION = "5.2.3.RELEASE"
+
+SPRING_BOOT_VERSION = "2.2.4.RELEASE"
+
+SPRING_R2DBC_STARTER_VERSION = "0.1.0.M3"
+
+FLYWAY_CORE_VERSION = "6.0.8"
+
+SHEDLOCK_VERSION = "4.5.1"
+
+# Major version number of flyway-test-extensions should be aligned with the major version
+# of flyway-core, at least until the projects are merged.
+FLYWAY_TEST_VERSION = "6.0.0"
+
+http_archive(
+    name = "io_bazel_rules_go",
+    sha256 = "b9aa86ec08a292b97ec4591cf578e020b35f98e12173bbd4a921f84f583aebd9",
+    urls = [
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/v0.20.2/rules_go-v0.20.2.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.20.2/rules_go-v0.20.2.tar.gz",
+    ],
+)
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+go_register_toolchains()
+
+http_archive(
+    name = "bazel_gazelle",
+    sha256 = "d8c45ee70ec39a57e7a05e5027c32b1576cc7f16d9dd37135b0eddde45cf1b10",
+    urls = [
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/bazel-gazelle/releases/download/v0.20.0/bazel-gazelle-v0.20.0.tar.gz",
+        "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.20.0/bazel-gazelle-v0.20.0.tar.gz",
+    ],
+)
+
+# Protocol Buffers and gRPC ----------------------------------------------------
+
+http_archive(
+    name = "rules_proto",
+    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+    ],
+)
+
+http_archive(
+    name = "com_github_grpc_grpc",
+    sha256 = "3ccc4e5ae8c1ce844456e39cc11f1c991a7da74396faabe83d779836ef449bce",
+    strip_prefix = "grpc-" + GRPC_VERSION,
+    url = "https://github.com/grpc/grpc/archive/v" + GRPC_VERSION + ".tar.gz",
+)
+
+http_archive(
+    name = "io_grpc_grpc_java",
+    sha256 = "a23970d15ee790c2bf36544976977eb45d3498c3efecc304717d6fbd8ba0fcc8",
+    strip_prefix = "grpc-java-" + GRPC_VERSION,
+    url = "https://github.com/grpc/grpc-java/archive/v" + GRPC_VERSION + ".tar.gz",
+)
+
+http_archive(
+    name = "com_salesforce_servicelibs_reactive_grpc",
+    sha256 = "ecbd374daa9398634253d9bb2f58f0193217c1cd94d63b7274e87ad41e232ad4",
+    strip_prefix = "reactive-grpc-1.0.0",
+    url = "https://github.com/salesforce/reactive-grpc/archive/v1.0.0.zip",
+)
+
+load("//build-utils:ruby_proto_rules/protoc_gen_rbi.bzl", "protoc_gen_rbi_deps")
+
+protoc_gen_rbi_deps()
+
+# Buildifier -------------------------------------------------------------------
+
+http_archive(
+    name = "com_github_bazelbuild_buildtools",
+    strip_prefix = "buildtools-1.0.0",
+    url = "https://github.com/bazelbuild/buildtools/archive/1.0.0.zip",
+)
+
+# Node js ----------------------------------------------------------------------
+
+http_archive(
+    name = "build_bazel_rules_nodejs",
+    sha256 = "b6670f9f43faa66e3009488bbd909bc7bc46a5a9661a33f6bc578068d1837f37",
+    urls = ["https://github.com/bazelbuild/rules_nodejs/releases/download/1.3.0/rules_nodejs-1.3.0.tar.gz"],
+)
+
+# Spring Boot deploy jar -------------------------------------------------------
+
+# TODO - retire //build-utils/springboot
+git_repository(
+    name = "bazel_springboot_rule",
+    commit = "ed5908c25487cd5806a5583006864cde8cf312a3",
+    remote = "https://github.com/salesforce/bazel-springboot-rule.git",
+    shallow_since = "1584086815 -0600",
+)
+
+# Javadoc ----------------------------------------------------------------------
+
+git_repository(
+    name = "google_bazel_common",
+    commit = "eb5c7e5d6d2c724fe410792c8be9f59130437e4a",
+    remote = "https://github.com/google/bazel-common.git",
+    shallow_since = "1582498271 -0500",
+)
+
+# Maven Dependencies ----------------------------------------------------------
+
+http_archive(
+    name = "rules_jvm_external",
+    sha256 = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a",
+    strip_prefix = "rules_jvm_external-" + RULES_JVM_EXTERNAL_VERSION,
+    url = "https://github.com/bazelbuild/rules_jvm_external/archive/" + RULES_JVM_EXTERNAL_VERSION + ".zip",
+)
+
+load("@rules_jvm_external//:defs.bzl", "maven_install")
+load("@rules_jvm_external//:specs.bzl", "maven")
+
+maven_install(
+    artifacts = [
+        "antlr:antlr:2.7.7",
+        "ch.qos.logback:logback-classic:1.2.3",
+        "com.apollographql.federation:federation-graphql-java-support:0.3.2",
+        "com.baomidou:mybatis-plus-boot-starter:3.2.0",
+        "com.braintreepayments.gateway:braintree-java:jar:2.22.2",
+        "com.fasterxml.jackson.core:jackson-annotations:jar:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.core:jackson-databind:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:" + JACKSON_VERSION,
+        "com.fasterxml.jackson.module:jackson-module-jsonSchema:" + JACKSON_VERSION,
+        "com.github.ben-manes.caffeine:caffeine:2.8.1",
+        "com.github.rholder:guava-retrying:2.0.0",
+        "com.github.spullara.mustache.java:compiler:0.9.6",
+        "com.google.api.grpc:proto-google-common-protos:1.17.0",
+        "com.google.apis:google-api-services-sheets:v4-rev581-1.25.0",
+        "com.google.apis:google-api-services-drive:v3-rev100-1.21.0",
+        "com.google.api-client:google-api-client:1.30.3",
+        "com.google.code.findbugs:jsr305:3.0.2",
+        "com.google.googlejavaformat:google-java-format:1.7",
+        "com.google.guava:guava:28.1-jre",
+        "com.google.oauth-client:google-oauth-client-jetty:1.30.3",
+        "com.google.protobuf:protobuf-java:3.11.1",
+        "com.graphql-java-kickstart:graphql-kickstart-spring-boot-starter-tools:" + GRAPHQL_JAVA_VERSION,
+        maven.artifact(
+            group = "com.graphql-java-kickstart",
+            artifact = "graphql-kickstart-spring-boot-starter-webflux",
+            version = GRAPHQL_JAVA_VERSION,
+            exclusions = [
+                "io.projectreactor.netty:reactor-netty",
+            ],
+        ),
+        "com.graphql-java-kickstart:graphql-java-tools:5.7.1",
+        "com.graphql-java-kickstart:graphql-spring-boot-starter-test:" + GRAPHQL_JAVA_VERSION,
+        "com.graphql-java-kickstart:graphql-spring-boot-starter:" + GRAPHQL_JAVA_VERSION,
+        "com.graphql-java-kickstart:graphiql-spring-boot-starter:" + GRAPHQL_JAVA_VERSION,
+        "com.graphql-java-kickstart:playground-spring-boot-starter:" + GRAPHQL_JAVA_VERSION,
+        "com.h2database:h2:1.4.200",
+        "com.hubspot.slack:slack-base:1.3",
+        "com.hubspot.slack:slack-java-client:1.3",
+        "com.newrelic.agent.java:newrelic-api:5.9.0",
+        "com.puppycrawl.tools:checkstyle:8.26",
+        "com.querydsl:querydsl-apt:4.2.2",
+        "com.querydsl:querydsl-jpa:4.2.2",
+        "com.salesforce.servicelibs:jprotoc:1.0.1",
+        "com.vladmihalcea:hibernate-types-52:2.7.1",
+        "com.flipkart.zjsonpatch:zjsonpatch:0.4.9",
+        "com.udojava:EvalEx:2.1",
+        "commons-beanutils:commons-beanutils:1.9.4",
+        "commons-collections:commons-collections:3.2.2",
+        "commons-logging:commons-logging:1.2",
+        "info.picocli:picocli:4.0.4",
+        "io.github.graphql-java:graphql-java-annotations:7.2.1",
+        "io.github.lognet:grpc-spring-boot-starter:3.5.1",
+        "io.github.resilience4j:resilience4j-retry:1.2.0",
+        "io.grpc:grpc-api:" + GRPC_VERSION,
+        "io.grpc:grpc-core:" + GRPC_VERSION,
+        "io.grpc:grpc-netty:" + GRPC_VERSION,
+        "io.grpc:grpc-protobuf:" + GRPC_VERSION,
+        "io.grpc:grpc-services:" + GRPC_VERSION,
+        "io.grpc:grpc-stub:" + GRPC_VERSION,
+        "io.grpc:grpc-testing:" + GRPC_VERSION,
+        "io.jsonwebtoken:jjwt-api:0.10.7",
+        "io.jsonwebtoken:jjwt-impl:0.10.7",
+        "io.jsonwebtoken:jjwt-jackson:0.10.7",
+        "io.micrometer:micrometer-core:1.3.5",
+        "io.micrometer:micrometer-registry-statsd:1.3.5",
+        "io.netty:netty-codec-http2:4.1.42.Final",
+        "io.netty:netty-handler:4.1.42.Final",
+        "io.opencensus:opencensus-contrib-grpc-metrics:0.24.0",
+        "io.projectreactor.netty:reactor-netty:0.9.0.RELEASE",
+        "io.projectreactor:reactor-core:" + REACTOR_CORE_VERSION,
+        "io.projectreactor:reactor-test:" + REACTOR_CORE_VERSION,
+        "io.r2dbc:r2dbc-bom:Arabba-RELEASE",
+        "io.r2dbc:r2dbc-h2:0.8.2.RELEASE",
+        "io.r2dbc:r2dbc-spi:0.8.1.RELEASE",
+        maven.artifact(
+            group = "io.r2dbc",
+            artifact = "r2dbc-postgresql",
+            version = "0.8.1.RELEASE",
+            exclusions = [
+                "io.projectreactor.netty:reactor-netty",
+            ],
+        ),
+        "io.sentry:sentry-logback:1.7.27",
+        "io.sentry:sentry-spring:1.7.27",
+        "io.springfox:springfox-bean-validators:2.9.2",
+        "io.springfox:springfox-swagger-ui:2.9.2",
+        "io.springfox:springfox-swagger2:2.9.2",
+        "io.swagger:swagger-annotations:1.6.0",
+        "javax.annotation:javax.annotation-api:jar:1.3.2",
+        "javax.persistence:javax.persistence-api:2.2",
+        "javax.validation:validation-api:2.0.1.Final",
+        "javax.xml.bind:jaxb-api:2.3.1",
+        "net.javacrumbs.future-converter:future-converter-java8-guava:1.2.0",
+        "net.javacrumbs.shedlock:shedlock-provider-jdbc-template:" + SHEDLOCK_VERSION,
+        "net.javacrumbs.shedlock:shedlock-spring:" + SHEDLOCK_VERSION,
+        "net.ttddyy:datasource-proxy:1.6",
+        "net.sf.geographiclib:GeographicLib-Java:1.42",
+        "org.antlr:antlr4-runtime:4.7.2",
+        "org.bouncycastle:bcprov-jdk15on:1.64",
+        "org.apache.commons:commons-lang3:3.9",
+        "org.drools:drools-compiler:7.28.0.Final",
+        "org.drools:drools-core:7.28.0.Final",
+        "org.drools:drools-templates:7.28.0.Final",
+        "org.flywaydb:flyway-core:" + FLYWAY_CORE_VERSION,
+        "org.flywaydb.flyway-test-extensions:flyway-spring-test:" + FLYWAY_TEST_VERSION,
+        "org.glassfish.jaxb:jaxb-runtime:2.3.2",
+        "org.hamcrest:java-hamcrest:2.0.0.0",
+        "org.hibernate:hibernate-annotations:3.5.6-Final",
+        "org.javamoney:moneta:1.3",
+        "org.jooq:jooq:" + JOOQ_VERSION,
+        "org.jooq:jooq-meta:" + JOOQ_VERSION,
+        "org.jooq:jooq-codegen:" + JOOQ_VERSION,
+        "org.json:json:20190722",
+        "org.junit.jupiter:junit-jupiter-migrationsupport:5.2.0",
+        "org.junit.jupiter:junit-jupiter:5.5.2",
+        "org.junit.platform:junit-platform-console:1.5.2",
+        "org.junit.platform:junit-platform-suite-api:1.5.2",
+        "org.kie:kie-api:7.28.0.Final",
+        "org.kie:kie-ci:7.28.0.Final",
+        "org.locationtech.spatial4j:spatial4j:0.7",
+        "org.mapstruct:mapstruct-processor:1.3.0.Final",
+        "org.mapstruct:mapstruct:1.3.0.Final",
+        "org.mockito:mockito-core:3.2.4",
+        "org.mockito:mockito-inline:2.8.9",
+        "org.mockito:mockito-junit-jupiter:3.1.0",
+        "org.openapitools:jackson-databind-nullable:0.2.0",
+        "org.postgresql:postgresql:42.2.9",
+        "org.projectlombok:lombok:1.18.10",
+        "org.reactivestreams:reactive-streams:1.0.3",
+        "org.reflections:reflections:0.9.11",
+        "org.slf4j:slf4j-api:" + SLF4J_VERSION,
+        "org.slf4j:slf4j-simple:" + SLF4J_VERSION,
+        "org.springframework.boot:spring-boot-actuator-autoconfigure:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-actuator:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-autoconfigure:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-configuration-processor:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-devtools:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-devtools:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-loader:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-actuator:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-aop:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-data-jpa:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-security:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-test:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-validation:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-web:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-starter-cache:" + SPRING_BOOT_VERSION,
+        maven.artifact(
+            group = "org.springframework.boot",
+            artifact = "spring-boot-starter-webflux",
+            version = SPRING_BOOT_VERSION,
+            exclusions = [
+                "io.projectreactor.netty:reactor-netty",
+            ],
+        ),
+        maven.artifact(
+            group = "org.springframework.boot",
+            artifact = "spring-boot-starter-tomcat",
+            version = SPRING_BOOT_VERSION,
+            exclusions = [
+                "org.apache.tomcat.embed:tomcat-embed-websocket",
+            ],
+        ),
+        "org.springframework.boot.experimental:spring-boot-starter-data-r2dbc:" + SPRING_R2DBC_STARTER_VERSION,
+        "org.springframework.boot.experimental:spring-boot-autoconfigure-r2dbc:" + SPRING_R2DBC_STARTER_VERSION,
+        "org.springframework.boot.experimental:spring-boot-test-autoconfigure-r2dbc:" + SPRING_R2DBC_STARTER_VERSION,
+        "org.springframework.boot:spring-boot-test-autoconfigure:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot-test:" + SPRING_BOOT_VERSION,
+        "org.springframework.boot:spring-boot:" + SPRING_BOOT_VERSION,
+        "org.springframework.data:spring-data-r2dbc:1.0.0.RELEASE",
+        "org.springframework.data:spring-data-relational:1.1.5.RELEASE",
+        "org.springframework.security:spring-security-test:5.2.1.RELEASE",
+        "org.springframework:spring-beans:" + SPRING_VERSION,
+        "org.springframework:spring-context:" + SPRING_VERSION,
+        "org.springframework:spring-core:" + SPRING_VERSION,
+        "org.springframework:spring-test:" + SPRING_VERSION,
+        "org.springframework:spring-tx:" + SPRING_VERSION,
+        "org.springframework:spring-webflux:" + SPRING_VERSION,
+        "software.amazon.awssdk:s3:" + AWSSDK_VERSION,
+        "software.amazon.awssdk:sts:" + AWSSDK_VERSION,
+        "software.amazon.kinesis:amazon-kinesis-client:2.2.7",
+        "systems.uom:systems-common:2.0",
+        "systems.uom:systems-quantity:2.0",
+        "systems.uom:systems-ucum:2.0",
+        "tech.units:indriya:2.0.1",
+        "org.mvel:mvel2:2.4.5.Final",
+        maven.artifact(
+            group = "org.springframework.boot",
+            artifact = "spring-boot-starter-test",
+            version = SPRING_BOOT_VERSION,
+            exclusions = [
+                "junit:junit",
+                "org.junit.vintage:junit-vintage-engine",
+            ],
+        ),
+    ],
+    fetch_sources = True,
+    generate_compat_repositories = True,
+    maven_install_json = "//:maven_install.json",
+    repositories = [
+        "https://jcenter.bintray.com",
+        "https://repo.spring.io/milestone/",
+    ],
+)
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+
+pinned_maven_install()
+
+load("@maven//:compat.bzl", "compat_repositories")
+
+compat_repositories()
+
+# Dependency Loading -----------------------------------------------------------
+
+load("@rules_proto//proto:repositories.bzl", "rules_proto_dependencies", "rules_proto_toolchains")
+
+rules_proto_dependencies()
+
+rules_proto_toolchains()
+
+load("@io_grpc_grpc_java//:repositories.bzl", "grpc_java_repositories")
+
+grpc_java_repositories()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+load("@com_github_grpc_grpc//bazel:grpc_extra_deps.bzl", "grpc_extra_deps")
+
+grpc_extra_deps()
+
+go_rules_dependencies()
+
+go_register_toolchains()
+
+load("@build_bazel_rules_nodejs//:index.bzl", "node_repositories", "yarn_install")
+
+node_repositories(
+    node_repositories = {
+        "12.16.0-darwin_amd64": ("node-v12.16.0-darwin-x64.tar.gz", "node-v12.16.0-darwin-x64", "af3b9bbfdd9ae1b46390e7deeb77a2c1d8dbc6fb4171bbb0cfe8686fc1ecef1d"),
+        "12.16.0-linux_amd64": ("node-v12.16.0-linux-x64.tar.xz", "node-v12.16.0-linux-x64", ""),
+        "12.16.0-windows_amd64": ("node-v12.16.0-win-x64.zip", "node-v12.16.0-win-x64", ""),
+    },
+    node_version = "12.16.0",
+    package_json = ["//:package.json"],
+    yarn_version = "1.19.1",
+)
+
+yarn_install(
+    name = "npm",
+    package_json = "//:package.json",
+    yarn_lock = "//:yarn.lock",
+)
+
+# OpenAPI generation -----------------------------------------------------------
+
+load("//build-utils/openapi_generator:defs.bzl", "openapi_tools_generator_bazel_repositories")
+
+# You can provide any version of the CLI that has been uploaded to Maven
+openapi_tools_generator_bazel_repositories(
+    openapi_generator_cli_version = "4.2.0",
+)
