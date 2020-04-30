@@ -1,27 +1,51 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-RULES_JVM_EXTERNAL_TAG = "2.5"
-
-RULES_JVM_EXTERNAL_SHA = "249e8129914be6d987ca57754516be35a14ea866c616041ff0cd32ea94d2f3a1"
+RULES_JVM_EXTERNAL_TAG = "3.0"
+RULES_JVM_EXTERNAL_SHA = "62133c125bf4109dfd9d2af64830208356ce4ef8b165a6ef15bbff7460b35c3a"
 
 http_archive(
     name = "rules_jvm_external",
-    sha256 = RULES_JVM_EXTERNAL_SHA,
     strip_prefix = "rules_jvm_external-%s" % RULES_JVM_EXTERNAL_TAG,
+    sha256 = RULES_JVM_EXTERNAL_SHA,
     url = "https://github.com/bazelbuild/rules_jvm_external/archive/%s.zip" % RULES_JVM_EXTERNAL_TAG,
 )
+SPRING_VERSION = "5.2.0.RELEASE"
 
 load("@rules_jvm_external//:defs.bzl", "maven_install")
 
 maven_install(
     artifacts = [
-        "junit:junit:4.12",
-        "com.google.guava:guava:28.0-jre",
-        "org.springframework:spring-web:5.2.0.RELEASE"
+        "org.hamcrest:hamcrest-library:1.3",
+        "org.springframework.boot:spring-boot-autoconfigure:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot-test-autoconfigure:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot-test:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot:2.1.3.RELEASE",
+        "org.springframework.boot:spring-boot-starter-web:2.1.3.RELEASE",
+        "org.springframework:spring-beans:5.1.5.RELEASE",
+        "org.springframework:spring-context:5.1.5.RELEASE",
+        "org.springframework:spring-test:5.1.5.RELEASE",
+        "org.springframework:spring-web:5.1.5.RELEASE",
+        "org.junit.jupiter:junit-jupiter-api:5.6.0",
+        "org.springframework.boot:spring-boot-starter-test:2.2.6.RELEASE",
+        "commons-logging:commons-logging:1.2",
+        "org.springframework:spring-aop:5.2.0.RELEASE",
+        "org.springframework:spring-expression:5.2.0.RELEASE",
+        "org.springframework:spring-beans:" + SPRING_VERSION,
+        "org.springframework:spring-context:" + SPRING_VERSION,
+        "org.springframework:spring-core:" + SPRING_VERSION,
+        "org.springframework:spring-test:" + SPRING_VERSION,
+        "org.springframework:spring-tx:" + SPRING_VERSION,
+        "org.springframework:spring-webflux:" + SPRING_VERSION,
     ],
     fetch_sources = True,
+    #maven_install_json = "//:maven_install.json",
     repositories = [
-        "http://uk.maven.org/maven2",
-        "https://jcenter.bintray.com/",
+        "https://jcenter.bintray.com",
+        "https://repo.spring.io/milestone/",
+        "http://repo.maven.apache.org/maven2",
+        "https://mvnrepository.com",
     ],
 )
+
+load("@maven//:defs.bzl", "pinned_maven_install")
+pinned_maven_install()
