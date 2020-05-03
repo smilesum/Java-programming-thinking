@@ -1,4 +1,4 @@
-package test.java.com.Spring.SpringBoot;
+package src.test.java.com.Spring.SpringBoot;
 
 import java.net.URL;
 import org.junit.Before;

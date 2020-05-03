@@ -15,6 +15,7 @@ app_dependency = [
     "@maven//:org_springframework_spring_core",
     "@maven//:org_springframework_spring_expression",
     "@maven//:org_springframework_spring_tx",
+    "@maven//:org_junit_jupiter_junit_jupiter_api",
 ]
 
 java_library(
@@ -26,7 +27,7 @@ java_library(
 java_binary(
     name = "java-maven",
     srcs = glob(["src/main/java/com/**/*.java"]),
-    main_class = "main.java.com.Spring.SpringBoot.App",
+    main_class = "src.main.java.com.Spring.SpringBoot.App",
     deps = app_dependency,
 )
 
@@ -47,11 +48,11 @@ java_binary(
 java_test(
     name = "tests",
     srcs = glob(["src/test/java/com/Spring/SpringBoot/*.java"]),
-    test_class = "test.java.com.Spring.SpringBoot.HelloControllerTest",
+    test_class = "src.test.java.com.Spring.SpringBoot.HelloControllerTest",
     deps = app_dependency + [
         ":java-maven-lib",
         "@maven//:junit_junit",
-        "@maven//:org_junit_jupiter_junit_jupiter_api",
         "@maven//:org_springframework_boot_spring_boot_test",
+        "@maven//:org_assertj_assertj_core",
     ],
 )

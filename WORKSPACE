@@ -36,6 +36,7 @@ maven_install(
         "org.springframework:spring-test:" + SPRING_VERSION,
         "org.springframework:spring-tx:" + SPRING_VERSION,
         "org.springframework:spring-webflux:" + SPRING_VERSION,
+        "org.assertj:assertj-core:" + "3.13.0",
     ],
     fetch_sources = True,
     #maven_install_json = "//:maven_install.json",
