@@ -41,7 +41,7 @@ java_binary(
 java_binary(
     name = "java-test",
     srcs = glob(["src/main/java/com/**/*.java"]),
-    main_class = "src.main.java.com.Java.Lambda.example",
+    main_class = "src.main.java.com.Java.annotation.Test",
     deps = app_dependency,
 )
 
