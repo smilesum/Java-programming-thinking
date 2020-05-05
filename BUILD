@@ -16,11 +16,13 @@ app_dependency = [
     "@maven//:org_springframework_spring_expression",
     "@maven//:org_springframework_spring_tx",
     "@maven//:org_junit_jupiter_junit_jupiter_api",
+    "@maven//:org_apache_tomcat_tomcat_annotations_api",
+    "@maven//:junit_junit",
 ]
 
 java_library(
     name = "java-maven-lib",
-    srcs = glob(["src/main/java/com/Spring/**/*.java"]),
+    srcs = glob(["src/main/java/com/**/*.java"]),
     deps = app_dependency,
 )
 
@@ -45,13 +47,19 @@ java_binary(
     deps = app_dependency,
 )
 
+java_binary(
+    name = "java-spring",
+    srcs = glob(["src/main/java/com/**/*.java"]),
+    main_class = "src.main.java.com.Spring.IOC.conditional.Test",
+    deps = app_dependency,
+)
+
 java_test(
     name = "tests",
-    srcs = glob(["src/test/java/com/Spring/SpringBoot/*.java"]),
+    srcs = glob(["src/test/java/com/**/*.java"]),
     test_class = "src.test.java.com.Spring.SpringBoot.HelloControllerTest",
     deps = app_dependency + [
         ":java-maven-lib",
-        "@maven//:junit_junit",
         "@maven//:org_springframework_boot_spring_boot_test",
         "@maven//:org_assertj_assertj_core",
     ],

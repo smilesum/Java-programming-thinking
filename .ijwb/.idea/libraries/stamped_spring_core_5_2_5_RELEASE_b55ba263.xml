@@ -4,6 +4,8 @@
       <root url="jar:///private/var/tmp/_bazel_eurusouou/4d66967f60b1cc4e20c1aa25bc792009/execroot/__main__/bazel-out/darwin-fastbuild/bin/external/maven/v1/https/jcenter.bintray.com/org/springframework/spring-core/5.2.5.RELEASE/stamped_spring-core-5.2.5.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC />
-    <SOURCES />
+    <SOURCES>
+      <root url="jar:///private/var/tmp/_bazel_eurusouou/4d66967f60b1cc4e20c1aa25bc792009/execroot/__main__/external/maven/v1/https/jcenter.bintray.com/org/springframework/spring-core/5.2.5.RELEASE/spring-core-5.2.5.RELEASE-sources.jar!/" />
+    </SOURCES>
   </library>
 </component>
