@@ -10,7 +10,6 @@ app_dependency = [
     "@maven//:org_springframework_spring_web",
     "@maven//:org_springframework_boot_spring_boot_starter_test",
     "@maven//:commons_logging_commons_logging",
-    "@maven//:org_springframework_spring_aop",
     "@maven//:org_springframework_spring_beans",
     "@maven//:org_springframework_spring_core",
     "@maven//:org_springframework_spring_expression",
@@ -18,6 +17,12 @@ app_dependency = [
     "@maven//:org_junit_jupiter_junit_jupiter_api",
     "@maven//:org_apache_tomcat_tomcat_annotations_api",
     "@maven//:junit_junit",
+
+    #AOP
+    "@maven//:org_springframework_spring_aspects",
+    "@maven//:org_springframework_boot_spring_boot_starter_aop",
+    "@maven//:org_aspectj_aspectjweaver",
+    "@maven//:org_springframework_spring_aop",
 ]
 
 java_library(
@@ -50,7 +55,7 @@ java_binary(
 java_binary(
     name = "java-spring",
     srcs = glob(["src/main/java/com/**/*.java"]),
-    main_class = "src.main.java.com.Spring.IOC.conditional.Test",
+    main_class = "src.main.java.com.Spring.AOP.Exception.AppConfig",
     deps = app_dependency,
 )
 

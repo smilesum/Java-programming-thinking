@@ -16,6 +16,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="stamped_spring-boot-autoconfigure-2.2.6.RELEASE_daed8bed" level="project" />
+    <orderEntry type="library" name="stamped_spring-boot-starter-aop-1.5.10.RELEASE_58b1f2cb" level="project" />
+    <orderEntry type="library" name="stamped_aspectjweaver-1.9.4_52470f90" level="project" />
     <orderEntry type="library" name="stamped_spring-boot-test-2.2.6.RELEASE_3cc5e30c" level="project" />
     <orderEntry type="library" name="stamped_assertj-core-3.13.2_43d0e675" level="project" />
     <orderEntry type="library" name="stamped_spring-context-5.2.5.RELEASE_a85184ff" level="project" />
@@ -28,6 +30,7 @@
     <orderEntry type="library" name="stamped_spring-tx-5.2.0.RELEASE_1cb4c003" level="project" />
     <orderEntry type="library" name="stamped_spring-aop-5.2.5.RELEASE_fcd0bf12" level="project" />
     <orderEntry type="library" name="stamped_tomcat-annotations-api-9.0.16_af05c12d" level="project" />
+    <orderEntry type="library" name="stamped_spring-aspects-5.2.0.RELEASE_dda2ae66" level="project" />
     <orderEntry type="library" name="stamped_junit-4.12_16a6873a" level="project" />
     <orderEntry type="library" name="stamped_spring-web-5.2.0.RELEASE_4c612ddf" level="project" />
     <orderEntry type="library" name="stamped_spring-boot-starter-test-2.2.6.RELEASE_56825f0a" level="project" />
