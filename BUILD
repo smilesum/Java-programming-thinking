@@ -16,7 +16,9 @@ app_dependency = [
     "@maven//:org_springframework_spring_tx",
     "@maven//:org_junit_jupiter_junit_jupiter_api",
     "@maven//:org_apache_tomcat_tomcat_annotations_api",
+    "@maven//:org_springframework_boot_spring_boot_starter_data_jpa",
     "@maven//:junit_junit",
+    "@maven//:com_h2database_h2",
 
     #AOP
     "@maven//:org_springframework_spring_aspects",
@@ -49,6 +51,13 @@ java_binary(
     name = "java-test",
     srcs = glob(["src/main/java/com/**/*.java"]),
     main_class = "src.main.java.com.Java.annotation.Test",
+    deps = app_dependency,
+)
+
+java_binary(
+    name = "java-java8",
+    srcs = glob(["src/main/java/com/**/*.java"]),
+    main_class = "src.main.java.com.Java8.Interface.TestDefault",
     deps = app_dependency,
 )
 

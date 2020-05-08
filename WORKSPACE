@@ -37,12 +37,16 @@ maven_install(
         "org.springframework:spring-tx:" + SPRING_VERSION,
         "org.springframework:spring-webflux:" + SPRING_VERSION,
         "org.assertj:assertj-core:" + "3.13.0",
+        "com.h2database:h2:" + "1.4.200",
 
         # AOP
         "org.aspectj:aspectjweaver:1.9.0",
         "org.springframework:spring-aspects:" + SPRING_VERSION,
         "org.springframework.boot:spring-boot-starter-aop:1.5.10.RELEASE",
         "org.springframework:spring-aop:4.3.14.RELEASE",
+
+        #JPA
+        "org.springframework.boot:spring-boot-starter-data-jpa:2.2.6.RELEASE",
     ],
     fetch_sources = True,
     #maven_install_json = "//:maven_install.json",
